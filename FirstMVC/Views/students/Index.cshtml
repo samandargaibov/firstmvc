@@ -1,0 +1,10 @@
+﻿@using FirstMVC.Models;
+
+@{
+    List<Student> students = Model;
+}
+
+    @foreach(var student in students)
+    {
+        <h1>@student.Id. @student.Name</h1>
+    }
