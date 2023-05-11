@@ -6,9 +6,7 @@ namespace FirstMVC.Controllers
 {
     public class StudentsController : Controller
     {
-        public IActionResult Index()
-        {
-            var students = new List<Student>
+        private List<Student> _students = new List<Student>
             {
                 new Student
                 {
@@ -31,7 +29,10 @@ namespace FirstMVC.Controllers
                     Name = "Michael"
                 },
             };
-            return View(students);
+        public IActionResult Index()
+        {
+            
+            return View(_students);
         }
 
         public IActionResult GetJson()
@@ -47,36 +48,13 @@ namespace FirstMVC.Controllers
 
         public IActionResult Details (int? id)
         {
-            var students = new List<Student>
-            {
-                new Student
-                {
-                    Id= 1,
-                    Name = "Semender"
-                },
-                new Student
-                {
-                    Id= 2,
-                    Name = "Kamran"
-                },
-                new Student
-                {
-                    Id= 3,
-                    Name = "Ali"
-                },
-                new Student
-                {
-                    Id= 4,
-                    Name = "Michael"
-                },
-            };
 
             if (id == null)
             {
                 return NotFound();
             }
             
-            var student = students.FirstOrDefault(x => x.Id == id);
+            var student = _students.FirstOrDefault(x => x.Id == id);
 
             if(student == null)
             {
